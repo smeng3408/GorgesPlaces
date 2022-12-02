@@ -2,14 +2,10 @@
 Ithaca Travel Book
 
 Home Screen:
-Tab navigation layout
-Fragments organized by destination categories
-Recycler view of destinations
-Bottom navigation between all destinations and saved destinations
+Tab navigation layout, fragments organized by destination categories, recycler view of destinations, bottom navigation between all destinations and saved destinations
 
 Saved:
-Recycler view of saved destinations
-Button to save and unsave destinations
+Recycler view of saved destinations, button to save and unsave destinations
 
-Destination Details:
+Destination details:
 Name, description, and activities of a destination

@@ -9,3 +9,6 @@ Recycler view of saved destinations, button to save and unsave destinations
 
 Destination details:
 Name, description, and activities of a destination
+
+Networking:
+OkHttp, Moshi

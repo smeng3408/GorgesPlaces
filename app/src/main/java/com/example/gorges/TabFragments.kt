@@ -1,6 +1,5 @@
 package com.example.gorges
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -49,7 +48,6 @@ class TabFragments : Fragment() {
         }
 
         val sharedPrefs = requireActivity().getSharedPreferences("Saved", 0)
-        var myPlaces = mutableListOf<Place>()
         var myFoodPlaces = mutableListOf<Place>()
         var myNaturePlaces = mutableListOf<Place>()
         var myTourismPlaces = mutableListOf<Place>()
@@ -58,9 +56,7 @@ class TabFragments : Fragment() {
 
         Log.d("NETWORKING CALL", "before")
         getPlaces {
-            Log.d("NETWORKING CALL", "RESPONSE?")
             for (i in it.indices) {
-                Log.d("NETWORKING CALL", it[i].name)
                 if (it[i].category.equals("Food"))
                     myFoodPlaces.add(it[i])
                 else if (it[i].category.equals("Nature"))
@@ -72,8 +68,6 @@ class TabFragments : Fragment() {
             activity?.runOnUiThread {
                 recyclerView.adapter?.notifyDataSetChanged()
             }
-            Log.d("RECYCLERVIEWWORKING?", myNaturePlaces.toString())
-
         }
 
         when (categoryNum) {
@@ -102,7 +96,7 @@ class TabFragments : Fragment() {
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @param param1 Parameter 1.
+         * @param categoryNum Parameter 1.
          * @param param2 Parameter 2.
          * @return A new instance of fragment TabFragments.
          */

@@ -19,8 +19,8 @@ class CustomAdapter(private val dataSet: List<Place>, private val current: Conte
     RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
 
         class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-            val placeNameText = view.findViewById<TextView>(R.id.placeNameText)
-            val placeDescriptionText = view.findViewById<TextView>(R.id.placeDescriptionText)
+            val placeNameText: TextView = view.findViewById<TextView>(R.id.placeNameText)
+            val placeDescriptionText: TextView = view.findViewById<TextView>(R.id.placeDescriptionText)
             val cardView : CardView = view.findViewById(R.id.cardView)
             val savedButton : Button = view.findViewById(R.id.saveButton)
         }
@@ -32,6 +32,7 @@ class CustomAdapter(private val dataSet: List<Place>, private val current: Conte
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        
         holder.placeNameText.text = dataSet[position].name
         var actualDescription = dataSet[position].description
         if (actualDescription.length > 150) {
@@ -55,12 +56,15 @@ class CustomAdapter(private val dataSet: List<Place>, private val current: Conte
                 Log.d("REPOERRORS adapter save", "yes")
                 notifyItemChanged(position)
             } else if (holder.savedButton.text.equals("SAVED")) {
-                Repository1.removePlace(dataSet[position], sharedPrefs, position)
+                Log.d("REPOERRORS adaptpos", "${holder.adapterPosition}")
+                Log.d("REPOERRORS before rem", Repository1.savedPlaces.toString())
+                Repository1.removePlace(dataSet[holder.adapterPosition], sharedPrefs, position)
+                Log.d("REPOERRORS aft rem", Repository1.savedPlaces.toString())
                 holder.savedButton.text = "SAVE"
                 holder.savedButton.setBackgroundColor(Color.parseColor("#DB1919"))
                 Log.d("REPOERRORS unsave", "yes")
                 if (frag == 1)
-                    notifyItemRemoved(position)
+                    notifyDataSetChanged()
             }
         }
 

@@ -22,6 +22,7 @@ class SpecificPlace : AppCompatActivity() {
 
         backButton.setOnClickListener {
             val intentToMain = Intent(this, MainActivity::class.java)
+            intentToMain.putExtra("Fragment", intent.extras?.getInt("Fragment"))
             startActivity(intentToMain)
         }
     }

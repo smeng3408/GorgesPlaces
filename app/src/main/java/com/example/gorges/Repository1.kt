@@ -48,7 +48,7 @@ object Repository1 {
 
         if (j != -1) {
             val editor = sharedPreferences.edit()
-            editor.remove("NUMSAVED")
+            editor.remove("NUMSAVED").apply()
             for (k in 0 until numSaved) {
                 editor.remove("PLACE${k}NAME")
                     .remove("PLACE${k}DESCRIPTION")

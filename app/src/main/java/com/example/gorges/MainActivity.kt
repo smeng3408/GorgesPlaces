@@ -25,7 +25,16 @@ class MainActivity : AppCompatActivity() {
 //                        myTourismPlaces.add(it[i])
 //                }
 
-            Log.d("REPOERROR main num", "${sharedPrefs.getInt("NUMSAVED", 0)}")
+        Log.d("REPOERROR main num", "${sharedPrefs.getInt("NUMSAVED", 0)}")
+        if (intent.extras?.getInt("Fragment") != null && intent.extras?.getInt("Fragment") == 1) {
+            bottomNavBar.selectedItemId = R.id.saved_item
+            supportFragmentManager.beginTransaction().replace(R.id.bottomNavFragmentContainer,
+                SavedFragment.newInstance("", "")).commit()
+        } else {
+            bottomNavBar.selectedItemId = R.id.home_item
+            supportFragmentManager.beginTransaction().replace(R.id.bottomNavFragmentContainer,
+                HomeFragment.newInstance("", "")).commit()
+        }
 
             bottomNavBar.setOnItemSelectedListener {
                 when (it.itemId) {

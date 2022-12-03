@@ -75,7 +75,7 @@ class CustomAdapter(private val dataSet: List<Place>, private val current: Conte
             intent.putExtra("Description", dataSet[position].description)
             intent.putExtra("Activities", dataSet[position].activities)
             intent.putExtra("Category", category)
-            intent.putExtra("Position", position)
+            intent.putExtra("Fragment", frag)
             current.startActivity(intent)
         }
     }
